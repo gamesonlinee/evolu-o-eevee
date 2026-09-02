@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✨ A Evolução Mágica da Eevee ✨</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      color: white;
+      background:
+        radial-gradient(circle at center, #30135e 0%, #10051f 45%, #030107 100%);
+    }
+
+    /* Fundo estrelado */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#d9a7ff 1px, transparent 1px);
+      background-size: 90px 90px, 140px 140px;
+      background-position: 0 0, 40px 70px;
+      opacity: .35;
+      animation: estrelas 20s linear infinite;
+    }
+
+    @keyframes estrelas {
+      from { transform: translateY(0); }
+      to { transform: translateY(90px); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1250px;
+      margin: auto;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      margin-bottom: 10px;
+      background: linear-gradient(
+        90deg,
+        #fff,
+        #ffd86b,
+        #ff8cf5,
+        #8be9ff,
+        #fff
+      );
+      background-size: 300%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: arcoiris 5s linear infinite;
+      filter: drop-shadow(0 0 25px #c66cff);
+    }
+
+    @keyframes arcoiris {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
+    }
+
+    .subtitulo {
+      font-size: 1.2rem;
+      color: #e4ccff;
+      margin-bottom: 55px;
+    }
+
+    /* Eevee central */
+    .eevee-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 0 auto 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .eevee-container::before,
+    .eevee-container::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 215, 100, .7);
+      animation: portal 3s ease-in-out infinite;
+    }
+
+    .eevee-container::before {
+      width: 220px;
+      height: 220px;
+    }
+
+    .eevee-container::after {
+      width: 290px;
+      height: 290px;
+      border-color: rgba(205, 120, 255, .5);
+      animation-delay: 1s;
+    }
+
+    .eevee {
+      width: 190px;
+      position: relative;
+      z-index: 3;
+      filter:
+        drop-shadow(0 0 15px #ffc94d)
+        drop-shadow(0 0 35px #ff8c00);
+      animation: flutuar 3s ease-in-out infinite;
+    }
+
+    @keyframes flutuar {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-18px) scale(1.04); }
+    }
+
+    @keyframes portal {
+      0%, 100% {
+        transform: scale(.8);
+        opacity: .2;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: .9;
+      }
+    }
+
+    .feixe {
+      width: 5px;
+      height: 0;
+      margin: -50px auto 50px;
+      background: linear-gradient(#fff, #d76cff, transparent);
+      box-shadow: 0 0 30px #fff, 0 0 70px #c34dff;
+      animation: energia 2.5s ease-in-out infinite;
+    }
+
+    @keyframes energia {
+      0%, 100% { height: 0; opacity: .2; }
+      50% { height: 180px; opacity: 1; }
+    }
+
+    /* Evoluções */
+    .evolucoes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      position: relative;
+      padding: 25px 18px;
+      min-height: 300px;
+      border-radius: 25px;
+      overflow: hidden;
+      cursor: pointer;
+
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(12px);
+
+      transition:
+        transform .45s ease,
+        box-shadow .45s ease,
+        border-color .45s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      left: 50%;
+      top: 35%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: var(--cor);
+      filter: blur(70px);
+      opacity: .3;
+      transition: .5s;
+    }
+
+    .card:hover {
+      transform: translateY(-15px) scale(1.04);
+      border-color: var(--cor);
+      box-shadow:
+        0 0 20px var(--cor),
+        0 0 60px color-mix(in srgb, var(--cor), transparent 50%);
+    }
+
+    .card:hover::before {
+      opacity: .65;
+      transform: translate(-50%, -50%) scale(1.4);
+    }
+
+    .pokemon-img {
+      position: relative;
+      z-index: 2;
+      width: 170px;
+      height: 170px;
+      object-fit: contain;
+      transition: .5s;
+      filter: drop-shadow(0 0 12px var(--cor));
+    }
+
+    .card:hover .pokemon-img {
+      transform: scale(1.2) rotate(3deg);
+      filter:
+        drop-shadow(0 0 12px white)
+        drop-shadow(0 0 30px var(--cor));
+    }
+
+    .nome {
+      position: relative;
+      z-index: 2;
+      font-size: 1.7rem;
+      margin-top: 8px;
+      text-shadow: 0 0 12px var(--cor);
+    }
+
+    .tipo {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 15px;
+      border-radius: 30px;
+      background: rgba(0,0,0,.35);
+      color: #eee;
+    }
+
+    /* Partículas */
+    .particula {
+      position: fixed;
+      z-index: 1;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 12px white, 0 0 25px #d76cff;
+      pointer-events: none;
+      animation: subir linear infinite;
+    }
+
+    @keyframes subir {
+      from {
+        transform: translateY(110vh) scale(0);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .mensagem {
+      margin-top: 60px;
+      font-size: 1.1rem;
+      color: #dbc9ff;
+      animation: brilho 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes brilho {
+      from { text-shadow: 0 0 5px #fff; }
+      to { text-shadow: 0 0 25px #c35cff; }
+    }
+
+    footer {
+      margin-top: 70px;
+      color: #8f7aa9;
+      font-size: .9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <h1>✨ Eevee ✨</h1>
+
+    <p class="subtitulo">
+      Uma pequena Eevee... infinitas possibilidades de evolução.
+    </p>
+
+    <div class="eevee-container">
+      <img
+        class="eevee"
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"
+        alt="Eevee"
+      >
+    </div>
+
+    <div class="feixe"></div>
+
+    <section class="evolucoes">
+
+      <div class="card" style="--cor:#4da6ff">
+        <img class="pokemon-img"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png"
+          alt="Vaporeon">
+        <h2 class="nome">Vaporeon</h2>
+        <span class="tipo">💧 Água</span>
+      </div>
+
+      <div class="card" style="--cor:#ff702e">
+        <img class="pokemon-img"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png"
+          alt="Jolteon">
+        <h2 class="nome">Jolteon</h2>
+        <span class="tipo">⚡ Elétrico</span>
+      </div>
+
+      <div class="card" style="--cor:#ff513d">
+        <img class="pokemon-img"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png"
+          alt="Flareon">
+        <h2 class="nome">Flareon</h2>
+        <span class="tipo">🔥 Fogo</span>
+      </div>
+
+      <div class="card" style="--cor:#9fa8ad">
+        <img class="pokemon-img"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/196.png"
+          alt="Espeon">
+        <h2 class="nome">Espeon</h2>
+        <span class="tipo">🔮 Psíquico</span>
+      </div>
+
+      <div class="card" style="--cor:#304a8f">
+        <img class="pokemon-img"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png"
+          alt="Umbreon">
+        <h2 class="nome">Umbreon</h2>
+        <span class="tipo">🌙 Sombrio</span>
+      </div>
+
+      <div class="card" style="--cor:#83d6f7">
+        <img class="pokemon-img"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png"
+          alt="Leafeon">
+        <h2 class="nome">Leafeon</h2>
+        <span class="tipo">🌿 Planta</span>
+      </div>
+
+      <div class="card" style="--cor:#b7e8ff">
+        <img class="pokemon-img"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png"
+          alt="Glaceon">
+        <h2 class="nome">Glaceon</h2>
+        <span class="tipo">❄️ Gelo</span>
+      </div>
+
+      <div class="card" style="--cor:#ff8bd8">
+        <img class="pokemon-img"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/700.png"
+          alt="Sylveon">
+        <h2 class="nome">Sylveon</h2>
+        <span class="tipo">🧚 Fada</span>
+      </div>
+
+    </section>
+
+    <p class="mensagem">
+      🌟 Qual será a próxima evolução da Eevee? 🌟
+    </p>
+
+    <footer>
+      Feito com ✨ magia, HTML e CSS
+    </footer>
+
+  </main>
+
+  <script>
+    // Cria partículas mágicas aleatórias
+    for (let i = 0; i < 70; i++) {
+      const p = document.createElement("div");
+      p.className = "particula";
+
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDuration = (3 + Math.random() * 8) + "s";
+      p.style.animationDelay = Math.random() * 8 + "s";
+      p.style.width = p.style.height =
+        (2 + Math.random() * 5) + "px";
+
+      document.body.appendChild(p);
+    }
+
+    // Clique nas evoluções
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => {
+
+        card.animate([
+          {
+            transform: "scale(1.04)",
+            filter: "brightness(1)"
+          },
+          {
+            transform: "scale(1.18)",
+            filter: "brightness(1.8)"
+          },
+          {
+            transform: "scale(1.04)",
+            filter: "brightness(1)"
+          }
+        ], {
+          duration: 700,
+          easing: "ease-out"
+        });
+
+      });
+    });
+  </script>
+
+</body>
+</html>
