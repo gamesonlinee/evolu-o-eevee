@@ -1,219 +1,468 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>✨ Evolução Mágica da Eevee ✨</title>
 
+
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
+
     margin: 0;
+
     width: 100%;
     height: 100%;
 }
 
 body {
+
     overflow: hidden;
-    font-family: Arial, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     color: white;
+
     background:
-        radial-gradient(circle at center,
-        #35105f 0%,
-        #150622 45%,
-        #020106 100%);
+        radial-gradient(
+            circle at center,
+            #35105f 0%,
+            #150622 45%,
+            #020106 100%
+        );
 }
 
-/* FUNDO */
+
+/* =====================================================
+   ESTRELAS
+===================================================== */
+
 #stars {
+
     position: fixed;
+
     inset: 0;
+
     overflow: hidden;
+
     pointer-events: none;
+
     z-index: 1;
 }
 
 .star {
+
     position: absolute;
+
     width: 3px;
     height: 3px;
+
     border-radius: 50%;
+
     background: white;
-    box-shadow: 0 0 6px white, 0 0 14px #bd63ff;
-    animation: starPulse 1.5s infinite alternate;
+
+    box-shadow:
+        0 0 6px white,
+        0 0 15px #bd63ff;
+
+    animation:
+        starPulse
+        1.5s
+        infinite
+        alternate;
 }
 
 @keyframes starPulse {
+
     from {
+
         opacity: .15;
-        transform: scale(.5);
+
+        transform:
+            scale(.5);
     }
+
     to {
+
         opacity: 1;
-        transform: scale(1.5);
+
+        transform:
+            scale(1.5);
     }
 }
 
-/* APP */
+
+/* =====================================================
+   APP
+===================================================== */
+
 #app {
+
     position: relative;
+
     z-index: 5;
+
     width: 100%;
     height: 100%;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
+
     text-align: center;
+
     padding: 15px;
 }
 
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
 h1 {
+
     margin: 0;
-    font-size: clamp(2rem, 7vw, 5rem);
+
+    font-size:
+        clamp(
+            2rem,
+            7vw,
+            5rem
+        );
+
     background:
         linear-gradient(
             90deg,
-            #fff,
+            #ffffff,
             #ffe36b,
             #ff6edc,
             #6cecff,
-            #fff
+            #ffffff
         );
+
     background-size: 400%;
+
     -webkit-background-clip: text;
+
     color: transparent;
-    animation: titleRainbow 5s linear infinite;
-    filter: drop-shadow(0 0 15px rgba(255,255,255,.8));
+
+    animation:
+        titleRainbow
+        5s
+        linear
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(
+                255,
+                255,
+                255,
+                .8
+            )
+        );
 }
 
 @keyframes titleRainbow {
+
     to {
-        background-position: 400%;
+
+        background-position:
+            400%;
     }
 }
+
 
 .subtitle {
-    margin: 5px 0 10px;
-    color: #dfcdf8;
+
+    margin:
+        5px 0 10px;
+
+    color:
+        #dfcdf8;
 }
 
-/* PALCO */
+
+/* =====================================================
+   PALCO
+===================================================== */
+
 #stage {
+
     position: relative;
-    width: min(92vw, 500px);
-    height: min(60vh, 450px);
-    min-height: 320px;
+
+    width:
+        min(
+            92vw,
+            500px
+        );
+
+    height:
+        min(
+            60vh,
+            450px
+        );
+
+    min-height:
+        320px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 }
 
-/* PORTAL */
+
+/* =====================================================
+   PORTAL
+===================================================== */
+
 .magic {
+
     position: absolute;
+
     width: 330px;
     height: 330px;
+
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,.85);
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            .85
+        );
 
     box-shadow:
+
         0 0 12px white,
+
         0 0 30px #dc52ff,
+
         0 0 70px #722eff,
-        inset 0 0 45px #8b39ff;
+
+        inset
+        0 0 45px #8b39ff;
 
     animation:
-        magicRotate 8s linear infinite,
-        magicPulse 2s ease-in-out infinite;
+
+        magicRotate
+        8s
+        linear
+        infinite,
+
+        magicPulse
+        2s
+        ease-in-out
+        infinite;
 }
+
 
 .magic::before {
+
     content: "";
+
     position: absolute;
+
     inset: 22px;
+
     border-radius: 50%;
-    border: 2px dashed #ffb5ff;
-    box-shadow: 0 0 15px #ff75ff;
-    animation: magicReverse 4s linear infinite;
+
+    border:
+        2px dashed
+        #ffb5ff;
+
+    box-shadow:
+        0 0 15px #ff75ff;
+
+    animation:
+        magicReverse
+        4s
+        linear
+        infinite;
 }
+
 
 .magic::after {
-    content: "✦   ✧   ✦   ✧";
+
+    content:
+        "✦   ✧   ✦   ✧";
+
     position: absolute;
+
     inset: 75px;
+
     border-radius: 50%;
-    border: 2px solid #65eaff;
+
+    border:
+        2px solid #65eaff;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     color: white;
+
     font-size: 20px;
-    text-shadow: 0 0 10px white, 0 0 20px #61eaff;
-    box-shadow: 0 0 20px #61eaff;
-    animation: magicRotate 3s linear infinite;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 20px #61eaff;
+
+    box-shadow:
+        0 0 20px #61eaff;
+
+    animation:
+        magicRotate
+        3s
+        linear
+        infinite;
 }
+
 
 @keyframes magicRotate {
+
     to {
-        transform: rotate(360deg);
+
+        transform:
+            rotate(360deg);
     }
 }
+
 
 @keyframes magicReverse {
+
     to {
-        transform: rotate(-360deg);
+
+        transform:
+            rotate(-360deg);
     }
 }
+
 
 @keyframes magicPulse {
-    0%,100% {
+
+    0%,
+    100% {
+
         opacity: .5;
-        transform: scale(.93);
+
+        transform:
+            scale(.93);
     }
+
     50% {
+
         opacity: 1;
-        transform: scale(1.06);
+
+        transform:
+            scale(1.06);
     }
 }
 
-/* ENERGIA */
+
+/* =====================================================
+   ENERGIA
+===================================================== */
+
 .energy {
+
     position: absolute;
+
     width: 270px;
     height: 270px;
+
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(255,255,255,.8) 0%,
-            rgba(200,65,255,.4) 25%,
+
+            rgba(
+                255,
+                255,
+                255,
+                .8
+            ) 0%,
+
+            rgba(
+                200,
+                65,
+                255,
+                .4
+            ) 25%,
+
             transparent 70%
         );
 
-    filter: blur(5px);
-    animation: energyPulse 1.5s ease-in-out infinite;
+    filter:
+        blur(5px);
+
+    animation:
+        energyPulse
+        1.5s
+        ease-in-out
+        infinite;
 }
 
+
 @keyframes energyPulse {
-    0%,100% {
-        transform: scale(.7);
+
+    0%,
+    100% {
+
+        transform:
+            scale(.7);
+
         opacity: .35;
     }
 
     50% {
-        transform: scale(1.2);
+
+        transform:
+            scale(1.2);
+
         opacity: .9;
     }
 }
 
-/* POKEMON */
+
+/* =====================================================
+   POKÉMON
+===================================================== */
+
 #pokemon {
+
     position: relative;
+
     z-index: 20;
 
     width: 230px;
@@ -222,57 +471,97 @@ h1 {
     object-fit: contain;
 
     /*
-       IMPORTANTE:
-       Nenhuma cor é aplicada à imagem.
+       SOMENTE SOMBRA.
+       NENHUM FILTRO DE COR.
     */
 
     filter:
-        drop-shadow(0 0 8px white)
-        drop-shadow(0 0 20px rgba(255,220,100,.8));
+        drop-shadow(
+            0 0 8px white
+        )
+        drop-shadow(
+            0 0 20px
+            rgba(
+                255,
+                220,
+                100,
+                .8
+            )
+        );
 
     animation:
-        pokemonFloat 3s ease-in-out infinite;
+        pokemonFloat
+        3s
+        ease-in-out
+        infinite;
 
-    transform-origin: center;
+    transform-origin:
+        center;
 }
 
+
 @keyframes pokemonFloat {
-    0%,100% {
-        transform: translateY(0) rotate(0);
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0);
     }
 
     50% {
-        transform: translateY(-15px) rotate(3deg);
+
+        transform:
+            translateY(-15px)
+            rotate(3deg);
     }
 }
 
-/* TRANSFORMAÇÃO */
+
+/* =====================================================
+   TRANSFORMAÇÃO
+===================================================== */
+
 #pokemon.transforming {
+
     animation:
         transformPokemon
         2.8s
-        cubic-bezier(.15,.8,.3,1)
+        cubic-bezier(
+            .15,
+            .8,
+            .3,
+            1
+        )
         forwards;
 }
+
 
 @keyframes transformPokemon {
 
     0% {
+
         transform:
             translateY(0)
             scale(1)
             rotate(0);
+
         opacity: 1;
     }
 
     15% {
+
         transform:
             translateY(-20px)
             scale(1.1)
             rotate(-5deg);
+
+        opacity: 1;
     }
 
     30% {
+
         transform:
             translateY(-40px)
             scale(1.2)
@@ -280,161 +569,257 @@ h1 {
     }
 
     45% {
+
         transform:
             translateY(-60px)
             scale(1.35)
             rotate(-10deg);
+
         opacity: .95;
     }
 
     60% {
+
         transform:
             translateY(-30px)
             scale(1.5)
             rotate(12deg);
+
         opacity: .8;
     }
 
     75% {
+
         transform:
             translateY(0)
             scale(1.7)
             rotate(-20deg);
+
         opacity: .45;
     }
 
     90% {
+
         transform:
             translateY(-20px)
             scale(.7)
             rotate(180deg);
+
         opacity: .2;
     }
 
     100% {
+
         transform:
             translateY(-30px)
             scale(.05)
             rotate(360deg);
+
         opacity: 0;
     }
 }
 
-/* NOVA EVOLUÇÃO */
+
+/* =====================================================
+   EVOLUÇÃO APARECENDO
+===================================================== */
+
 #pokemon.evolved {
+
     animation:
         evolutionAppear
         1.3s
-        cubic-bezier(.1,.8,.25,1.4)
+        cubic-bezier(
+            .1,
+            .8,
+            .25,
+            1.4
+        )
         forwards;
 }
+
 
 @keyframes evolutionAppear {
 
     0% {
+
         opacity: 0;
-        transform: scale(.05) rotate(-360deg);
+
+        transform:
+            scale(.05)
+            rotate(-360deg);
     }
 
     25% {
+
         opacity: 1;
-        transform: scale(1.5) rotate(30deg);
+
+        transform:
+            scale(1.5)
+            rotate(30deg);
     }
 
     45% {
-        transform: scale(.8) rotate(-15deg);
+
+        transform:
+            scale(.8)
+            rotate(-15deg);
     }
 
     70% {
-        transform: scale(1.15) rotate(8deg);
+
+        transform:
+            scale(1.15)
+            rotate(8deg);
     }
 
     100% {
+
         opacity: 1;
-        transform: scale(1) rotate(0);
+
+        transform:
+            scale(1)
+            rotate(0);
     }
 }
 
-/* EXPLOSÃO */
+
+/* =====================================================
+   EXPLOSÃO
+===================================================== */
+
 .explosion {
+
     position: absolute;
+
     z-index: 60;
 
     width: 35px;
     height: 35px;
 
     border-radius: 50%;
+
     background: white;
 
     box-shadow:
+
         0 0 25px white,
+
         0 0 70px #ff59ff,
+
         0 0 130px #61eaff;
 
-    animation: explode 1s ease-out forwards;
+    animation:
+        explode
+        1s
+        ease-out
+        forwards;
 }
 
+
 @keyframes explode {
+
     0% {
-        transform: scale(.1);
+
+        transform:
+            scale(.1);
+
         opacity: 1;
     }
 
     100% {
-        transform: scale(17);
+
+        transform:
+            scale(17);
+
         opacity: 0;
     }
 }
 
-/* FLASH */
+
+/* =====================================================
+   FLASH
+===================================================== */
+
 #flash {
+
     position: fixed;
+
     inset: 0;
+
     background: white;
+
     z-index: 100;
+
     opacity: 0;
+
     pointer-events: none;
 }
 
+
 #flash.active {
-    animation: screenFlash .8s ease-out;
+
+    animation:
+        screenFlash
+        .8s
+        ease-out;
 }
 
+
 @keyframes screenFlash {
+
     0% {
+
         opacity: 0;
     }
 
     25% {
+
         opacity: .95;
     }
 
     100% {
+
         opacity: 0;
     }
 }
 
-/* PARTICULAS */
+
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
+
 .particle {
+
     position: fixed;
+
     z-index: 70;
 
     width: 5px;
     height: 5px;
 
     border-radius: 50%;
+
     background: white;
 
     box-shadow:
+
         0 0 8px white,
+
         0 0 20px #dc59ff;
 
     pointer-events: none;
 }
 
-/* SIMBOLOS */
+
+/* =====================================================
+   SÍMBOLOS
+===================================================== */
+
 .element {
+
     position: absolute;
+
     z-index: 80;
 
     pointer-events: none;
@@ -448,41 +833,63 @@ h1 {
         forwards;
 }
 
+
 @keyframes elementFly {
 
     0% {
-        opacity: 0;
 
-        transform:
-            translate(-50%,-50%)
-            scale(.1);
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    100% {
         opacity: 0;
 
         transform:
             translate(
-                calc(-50% + var(--x)),
-                calc(-50% + var(--y))
+                -50%,
+                -50%
+            )
+            scale(.1);
+    }
+
+    20% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(
+                    -50% +
+                    var(--x)
+                ),
+                calc(
+                    -50% +
+                    var(--y)
+                )
             )
             scale(1.5)
             rotate(360deg);
     }
 }
 
-/* RESULTADO */
+
+/* =====================================================
+   RESULTADO
+===================================================== */
+
 #result {
+
     position: relative;
+
     z-index: 30;
+
     min-height: 95px;
 }
 
+
 #result h2 {
+
     margin: 0;
 
     font-size:
@@ -493,36 +900,57 @@ h1 {
         );
 
     text-shadow:
+
         0 0 10px white,
+
         0 0 30px #ff65ff,
+
         0 0 60px #9b4cff;
 
     animation:
-        resultAppear .7s ease-out;
+        resultAppear
+        .7s
+        ease-out;
 }
 
+
 #result p {
+
     margin: 6px 0;
-    color: #e0d0f5;
+
+    color:
+        #e0d0f5;
 }
+
 
 @keyframes resultAppear {
 
     from {
+
         opacity: 0;
-        transform: scale(.2);
+
+        transform:
+            scale(.2);
     }
 
     to {
+
         opacity: 1;
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
 }
 
-/* BOTÃO */
+
+/* =====================================================
+   BOTÃO PRINCIPAL
+===================================================== */
+
 button {
 
     position: relative;
+
     z-index: 90;
 
     margin-top: 5px;
@@ -537,6 +965,7 @@ button {
     color: white;
 
     font-size: 17px;
+
     font-weight: bold;
 
     cursor: pointer;
@@ -553,77 +982,204 @@ button {
     background-size: 300%;
 
     box-shadow:
+
         0 0 15px #a83cff,
-        0 0 45px rgba(200,50,255,.6);
+
+        0 0 45px
+        rgba(
+            200,
+            50,
+            255,
+            .6
+        );
 
     animation:
         buttonGlow
-        3s linear infinite;
+        3s
+        linear
+        infinite;
 
-    transition: .2s;
+    transition:
+        .2s;
 }
 
+
 button:hover {
-    transform: scale(1.08);
+
+    transform:
+        scale(1.08);
 
     box-shadow:
+
         0 0 20px white,
+
         0 0 60px #dc40ff;
 }
 
+
 button:active {
-    transform: scale(.94);
+
+    transform:
+        scale(.94);
 }
 
+
 button:disabled {
+
     opacity: .5;
+
     cursor: wait;
 }
 
+
 @keyframes buttonGlow {
+
     to {
-        background-position: 300%;
+
+        background-position:
+            300%;
     }
 }
 
-/* CELULAR */
+
+/* =====================================================
+   BOTÃO DE SOM
+===================================================== */
+
+#soundButton {
+
+    position: fixed;
+
+    top: 15px;
+
+    right: 15px;
+
+    z-index: 200;
+
+    margin: 0;
+
+    padding:
+        10px 15px;
+
+    font-size: 14px;
+
+    background:
+        rgba(
+            30,
+            10,
+            55,
+            .8
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .3
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(
+            180,
+            70,
+            255,
+            .5
+        );
+
+    animation: none;
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
 @media(max-width:600px) {
 
     #stage {
+
         height: 390px;
     }
 
     .magic {
+
         width: 275px;
         height: 275px;
     }
 
     .energy {
+
         width: 215px;
         height: 215px;
     }
 
     #pokemon {
+
         width: 190px;
         height: 190px;
+    }
+
+    #soundButton {
+
+        top: 10px;
+        right: 10px;
+
+        padding:
+            8px 12px;
+
+        font-size: 12px;
     }
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =====================================================
+     FUNDO
+===================================================== -->
+
 <div id="stars"></div>
+
 <div id="flash"></div>
+
+
+<!-- =====================================================
+     BOTÃO SOM
+===================================================== -->
+
+<button id="soundButton">
+    🔊 SOM: ON
+</button>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
 
 <div id="app">
 
-    <h1>✨ Evolução Mágica ✨</h1>
+
+    <h1>
+        ✨ Evolução Mágica ✨
+    </h1>
+
 
     <div class="subtitle">
         Descubra qual será o destino da Eevee...
     </div>
+
+
+    <!-- =================================================
+         PALCO
+    ================================================== -->
 
     <div id="stage">
 
@@ -631,17 +1187,27 @@ button:disabled {
 
         <div class="energy"></div>
 
+
         <img
             id="pokemon"
+
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"
+
             alt="Eevee"
         >
 
     </div>
 
+
+    <!-- =================================================
+         RESULTADO
+    ================================================== -->
+
     <div id="result">
 
-        <h2>🦊 Eevee</h2>
+        <h2>
+            🦊 Eevee
+        </h2>
 
         <p>
             Clique em EVOLUIR para começar!
@@ -649,16 +1215,25 @@ button:disabled {
 
     </div>
 
+
+    <!-- =================================================
+         EVOLUIR
+    ================================================== -->
+
     <button id="evolveButton">
+
         ✨ EVOLUIR ✨
+
     </button>
 
+
 </div>
+
 
 <script>
 
 /* =====================================================
-   EVOLUÇÕES
+   DADOS DAS EVOLUÇÕES
 ===================================================== */
 
 const evolucoes = [
@@ -667,6 +1242,7 @@ const evolucoes = [
         nome: "Vaporeon",
         tipo: "💧 Água",
         chance: 15,
+        id: 134,
 
         imagem:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png",
@@ -675,10 +1251,12 @@ const evolucoes = [
         ["💧","🌊","💦","🐚"]
     },
 
+
     {
         nome: "Jolteon",
         tipo: "⚡ Elétrico",
         chance: 15,
+        id: 135,
 
         imagem:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png",
@@ -687,10 +1265,12 @@ const evolucoes = [
         ["⚡","💥","⚡","✨"]
     },
 
+
     {
         nome: "Flareon",
         tipo: "🔥 Fogo",
         chance: 15,
+        id: 136,
 
         imagem:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png",
@@ -699,10 +1279,12 @@ const evolucoes = [
         ["🔥","❤️‍🔥","🔥","✨"]
     },
 
+
     {
         nome: "Espeon",
         tipo: "🔮 Psíquico",
         chance: 10,
+        id: 196,
 
         imagem:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/196.png",
@@ -711,10 +1293,12 @@ const evolucoes = [
         ["🔮","💜","🌀","✦"]
     },
 
+
     {
         nome: "Umbreon",
         tipo: "🌙 Sombrio",
         chance: 10,
+        id: 197,
 
         imagem:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png",
@@ -723,10 +1307,12 @@ const evolucoes = [
         ["🌙","🖤","🌌","✨"]
     },
 
+
     {
         nome: "Leafeon",
         tipo: "🌿 Planta",
         chance: 10,
+        id: 470,
 
         imagem:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png",
@@ -735,10 +1321,12 @@ const evolucoes = [
         ["🌿","🍃","🌱","🌼"]
     },
 
+
     {
         nome: "Glaceon",
         tipo: "❄️ Gelo",
         chance: 10,
+        id: 471,
 
         imagem:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png",
@@ -747,10 +1335,12 @@ const evolucoes = [
         ["❄️","🧊","💎","❄️"]
     },
 
+
     {
         nome: "Sylveon",
         tipo: "🧚 Fada",
         chance: 15,
+        id: 700,
 
         imagem:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/700.png",
@@ -760,6 +1350,336 @@ const evolucoes = [
     }
 
 ];
+
+
+/* =====================================================
+   CONFIGURAÇÃO DO SOM
+===================================================== */
+
+let somAtivo = true;
+
+
+/*
+   IDs usados pela PokéAPI.
+*/
+
+const cryBase =
+    "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/";
+
+
+/*
+   Cache dos áudios.
+*/
+
+const audios = {};
+
+
+/* =====================================================
+   CARREGAR SOM
+===================================================== */
+
+function carregarSom(id) {
+
+    if (
+        audios[id]
+    ) {
+
+        return audios[id];
+    }
+
+
+    const audio =
+        new Audio(
+            cryBase +
+            id +
+            ".ogg"
+        );
+
+
+    audio.preload =
+        "auto";
+
+
+    audios[id] =
+        audio;
+
+
+    return audio;
+}
+
+
+/* =====================================================
+   TOCAR CRY
+===================================================== */
+
+function tocarCry(id) {
+
+    if (
+        !somAtivo
+    ) {
+
+        return;
+    }
+
+
+    const audio =
+        carregarSom(id);
+
+
+    /*
+       Volta para o começo
+       caso já tenha tocado.
+    */
+
+    audio.currentTime =
+        0;
+
+
+    audio.play()
+        .catch(
+            () => {
+                /*
+                   O navegador pode
+                   bloquear áudio até
+                   haver interação.
+                */
+            }
+        );
+}
+
+
+/* =====================================================
+   SOM DA MAGIA
+===================================================== */
+
+let audioContext = null;
+
+
+function iniciarAudioContext() {
+
+    if (
+        !audioContext
+    ) {
+
+        const AudioCtx =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        if (
+            AudioCtx
+        ) {
+
+            audioContext =
+                new AudioCtx();
+        }
+    }
+
+
+    if (
+        audioContext &&
+        audioContext.state ===
+        "suspended"
+    ) {
+
+        audioContext.resume();
+    }
+}
+
+
+/*
+   Pequeno efeito mágico
+   gerado pelo navegador.
+*/
+
+function somMagico() {
+
+    if (
+        !somAtivo
+    ) {
+
+        return;
+    }
+
+
+    iniciarAudioContext();
+
+
+    if (
+        !audioContext
+    ) {
+
+        return;
+    }
+
+
+    const now =
+        audioContext.currentTime;
+
+
+    const osc =
+        audioContext.createOscillator();
+
+
+    const gain =
+        audioContext.createGain();
+
+
+    osc.type =
+        "sine";
+
+
+    osc.frequency
+        .setValueAtTime(
+            220,
+            now
+        );
+
+
+    osc.frequency
+        .exponentialRampToValueAtTime(
+            880,
+            now + 1.2
+        );
+
+
+    gain.gain
+        .setValueAtTime(
+            .0001,
+            now
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+            .18,
+            now + .05
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+            .0001,
+            now + 1.3
+        );
+
+
+    osc.connect(
+        gain
+    );
+
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    osc.start(
+        now
+    );
+
+
+    osc.stop(
+        now + 1.4
+    );
+}
+
+
+/* =====================================================
+   SOM DA EXPLOSÃO
+===================================================== */
+
+function somExplosao() {
+
+    if (
+        !somAtivo
+    ) {
+
+        return;
+    }
+
+
+    iniciarAudioContext();
+
+
+    if (
+        !audioContext
+    ) {
+
+        return;
+    }
+
+
+    const now =
+        audioContext.currentTime;
+
+
+    const osc =
+        audioContext.createOscillator();
+
+
+    const gain =
+        audioContext.createGain();
+
+
+    osc.type =
+        "sawtooth";
+
+
+    osc.frequency
+        .setValueAtTime(
+            150,
+            now
+        );
+
+
+    osc.frequency
+        .exponentialRampToValueAtTime(
+            35,
+            now + .45
+        );
+
+
+    gain.gain
+        .setValueAtTime(
+            .0001,
+            now
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+            .35,
+            now + .02
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+            .0001,
+            now + .5
+        );
+
+
+    osc.connect(
+        gain
+    );
+
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    osc.start(
+        now
+    );
+
+
+    osc.stop(
+        now + .55
+    );
+}
 
 
 /* =====================================================
@@ -775,23 +1695,28 @@ function sortearEvolucao() {
             0
         );
 
+
     let numero =
-        Math.random() * total;
+        Math.random() *
+        total;
+
 
     for (
         const evo of evolucoes
     ) {
 
-        numero -= evo.chance;
+        numero -=
+            evo.chance;
+
 
         if (
             numero <= 0
         ) {
 
             return evo;
-
         }
     }
+
 
     return evolucoes[0];
 }
@@ -803,10 +1728,11 @@ function sortearEvolucao() {
 
 function criarEstrelas() {
 
-    const container =
+    const stars =
         document.getElementById(
             "stars"
         );
+
 
     for (
         let i = 0;
@@ -819,19 +1745,27 @@ function criarEstrelas() {
                 "div"
             );
 
+
         estrela.className =
             "star";
 
+
         estrela.style.left =
-            Math.random() * 100 + "%";
+            Math.random() * 100 +
+            "%";
+
 
         estrela.style.top =
-            Math.random() * 100 + "%";
+            Math.random() * 100 +
+            "%";
+
 
         estrela.style.animationDelay =
-            Math.random() * 3 + "s";
+            Math.random() * 3 +
+            "s";
 
-        container.appendChild(
+
+        stars.appendChild(
             estrela
         );
     }
@@ -857,35 +1791,45 @@ function criarParticulas(
                 "div"
             );
 
+
         particle.className =
             "particle";
+
 
         particle.style.left =
             "50%";
 
+
         particle.style.top =
             "50%";
 
+
         const angle =
             Math.random() *
-            Math.PI * 2;
+            Math.PI *
+            2;
+
 
         const distance =
             100 +
             Math.random() *
             450;
 
+
         const x =
             Math.cos(angle) *
             distance;
+
 
         const y =
             Math.sin(angle) *
             distance;
 
+
         particle.animate(
 
             [
+
                 {
                     transform:
                         "translate(-50%,-50%) scale(0)",
@@ -914,9 +1858,11 @@ function criarParticulas(
 
                     opacity: 0
                 }
+
             ],
 
             {
+
                 duration:
                     800 +
                     Math.random() *
@@ -927,12 +1873,15 @@ function criarParticulas(
             }
         );
 
+
         document.body.appendChild(
             particle
         );
 
+
         setTimeout(
-            () => particle.remove(),
+            () =>
+                particle.remove(),
             2300
         );
     }
@@ -952,6 +1901,7 @@ function criarSimbolos(
             "stage"
         );
 
+
     for (
         let i = 0;
         i < 35;
@@ -963,8 +1913,10 @@ function criarSimbolos(
                 "div"
             );
 
+
         element.className =
             "element";
+
 
         element.innerText =
             evo.simbolos[
@@ -974,34 +1926,49 @@ function criarSimbolos(
                 )
             ];
 
+
         element.style.left =
             "50%";
+
 
         element.style.top =
             "50%";
 
-        element.style.setProperty(
-            "--x",
-            (
-                Math.random() *
-                500 - 250
-            ) + "px"
-        );
 
         element.style.setProperty(
-            "--y",
+
+            "--x",
+
             (
                 Math.random() *
-                500 - 250
+                500 -
+                250
             ) + "px"
+
         );
+
+
+        element.style.setProperty(
+
+            "--y",
+
+            (
+                Math.random() *
+                500 -
+                250
+            ) + "px"
+
+        );
+
 
         stage.appendChild(
             element
         );
 
+
         setTimeout(
-            () => element.remove(),
+            () =>
+                element.remove(),
             2000
         );
     }
@@ -1019,20 +1986,25 @@ function criarExplosao() {
             "stage"
         );
 
+
     const explosion =
         document.createElement(
             "div"
         );
 
+
     explosion.className =
         "explosion";
+
 
     stage.appendChild(
         explosion
     );
 
+
     setTimeout(
-        () => explosion.remove(),
+        () =>
+            explosion.remove(),
         1000
     );
 }
@@ -1049,11 +2021,14 @@ function criarFlash() {
             "flash"
         );
 
+
     flash.classList.remove(
         "active"
     );
 
+
     void flash.offsetWidth;
+
 
     flash.classList.add(
         "active"
@@ -1062,31 +2037,42 @@ function criarFlash() {
 
 
 /* =====================================================
-   EVOLUIR
+   EVOLUÇÃO
 ===================================================== */
 
-let evoluindo = false;
+let evoluindo =
+    false;
+
 
 function evoluir() {
 
-    if (evoluindo) {
+    if (
+        evoluindo
+    ) {
+
         return;
     }
 
-    evoluindo = true;
+
+    evoluindo =
+        true;
+
 
     const evo =
         sortearEvolucao();
+
 
     const pokemon =
         document.getElementById(
             "pokemon"
         );
 
+
     const result =
         document.getElementById(
             "result"
         );
+
 
     const button =
         document.getElementById(
@@ -1094,93 +2080,174 @@ function evoluir() {
         );
 
 
-    /* INÍCIO */
+    /* Ativa o contexto de áudio
+       através do clique do usuário. */
 
-    button.disabled = true;
+    iniciarAudioContext();
+
+
+    /* Cry da Eevee */
+
+    tocarCry(
+        133
+    );
+
+
+    /* Botão */
+
+    button.disabled =
+        true;
+
 
     button.innerText =
         "⚡ CARREGANDO...";
 
+
     result.innerHTML = `
-        <h2>✨ A magia despertou! ✨</h2>
+
+        <h2>
+            ✨ A magia despertou! ✨
+        </h2>
+
         <p>
             Eevee está sentindo uma energia misteriosa...
         </p>
+
     `;
 
-    criarParticulas(80);
+
+    criarParticulas(
+        80
+    );
 
 
-    /* TRANSFORMAÇÃO */
+    /* SOM MÁGICO */
+
+    setTimeout(
+        somMagico,
+        250
+    );
+
+
+    /* =================================================
+       FASE 1
+    ================================================= */
 
     setTimeout(() => {
 
         result.innerHTML = `
-            <h2>🔮 ENERGIA MÁGICA 🔮</h2>
+
+            <h2>
+                🔮 ENERGIA MÁGICA 🔮
+            </h2>
+
             <p>
                 O poder da evolução está crescendo!
             </p>
+
         `;
+
 
         pokemon.classList.remove(
             "evolved"
         );
 
+
         pokemon.classList.remove(
             "transforming"
         );
 
+
         void pokemon.offsetWidth;
+
 
         pokemon.classList.add(
             "transforming"
         );
 
-        criarParticulas(130);
 
-        criarSimbolos(evo);
+        criarParticulas(
+            130
+        );
+
+
+        criarSimbolos(
+            evo
+        );
+
 
     }, 600);
 
 
-    /* FASE 2 */
+    /* =================================================
+       FASE 2
+    ================================================= */
 
     setTimeout(() => {
 
         button.innerText =
             "💫 TRANSFORMANDO...";
 
+
         result.innerHTML = `
-            <h2>⚡ TRANSFORMAÇÃO ⚡</h2>
+
+            <h2>
+                ⚡ TRANSFORMAÇÃO ⚡
+            </h2>
+
             <p>
                 A nova forma está surgindo!
             </p>
+
         `;
 
-        criarParticulas(180);
 
-        criarSimbolos(evo);
+        criarParticulas(
+            180
+        );
+
+
+        criarSimbolos(
+            evo
+        );
+
+
+        somMagico();
+
 
     }, 1500);
 
 
-    /* FASE 3 */
+    /* =================================================
+       FASE 3
+    ================================================= */
 
     setTimeout(() => {
 
         result.innerHTML = `
-            <h2>🌌 PODER MÁXIMO 🌌</h2>
+
+            <h2>
+                🌌 PODER MÁXIMO 🌌
+            </h2>
+
             <p>
                 A evolução está acontecendo!
             </p>
+
         `;
 
-        criarParticulas(250);
+
+        criarParticulas(
+            250
+        );
+
 
     }, 2300);
 
 
-    /* EXPLOSÃO */
+    /* =================================================
+       EXPLOSÃO
+    ================================================= */
 
     setTimeout(() => {
 
@@ -1188,61 +2255,103 @@ function evoluir() {
 
         criarFlash();
 
-        criarParticulas(300);
+        criarParticulas(
+            300
+        );
 
-        criarSimbolos(evo);
+        criarSimbolos(
+            evo
+        );
+
+        somExplosao();
 
     }, 2850);
 
 
-    /* EVOLUÇÃO */
+    /* =================================================
+       NOVA FORMA
+    ================================================= */
 
     setTimeout(() => {
 
         pokemon.src =
             evo.imagem;
 
+
         pokemon.alt =
             evo.nome;
+
 
         pokemon.classList.remove(
             "transforming"
         );
 
+
         void pokemon.offsetWidth;
+
 
         pokemon.classList.add(
             "evolved"
         );
 
+
         result.innerHTML = `
+
             <h2>
                 ✨ ${evo.nome} ✨
             </h2>
 
             <p>
+
                 ${evo.tipo}
+
                 <br>
+
                 <strong>
                     Eevee evoluiu!
                 </strong>
+
             </p>
+
         `;
 
-        criarParticulas(260);
 
-        criarSimbolos(evo);
+        criarParticulas(
+            260
+        );
 
 
-        /* LIBERAR BOTÃO */
+        criarSimbolos(
+            evo
+        );
+
+
+        /*
+           CRY DA EVOLUÇÃO
+        */
+
+        setTimeout(() => {
+
+            tocarCry(
+                evo.id
+            );
+
+        }, 300);
+
+
+        /* =================================================
+           LIBERAR BOTÃO
+        ================================================= */
 
         setTimeout(() => {
 
             button.disabled =
                 false;
 
+
             button.innerText =
                 "🔄 TENTAR NOVAMENTE";
+
 
             evoluindo =
                 false;
@@ -1254,11 +2363,13 @@ function evoluir() {
 
 
 /* =====================================================
-   BOTÃO
+   BOTÃO EVOLUIR
 ===================================================== */
 
 document
-    .getElementById("evolveButton")
+    .getElementById(
+        "evolveButton"
+    )
     .addEventListener(
         "click",
         evoluir
@@ -1266,12 +2377,77 @@ document
 
 
 /* =====================================================
-   INICIAR
+   BOTÃO SOM
+===================================================== */
+
+document
+    .getElementById(
+        "soundButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            somAtivo =
+                !somAtivo;
+
+
+            const button =
+                document.getElementById(
+                    "soundButton"
+                );
+
+
+            if (
+                somAtivo
+            ) {
+
+                button.innerText =
+                    "🔊 SOM: ON";
+
+
+                iniciarAudioContext();
+
+            } else {
+
+                button.innerText =
+                    "🔇 SOM: OFF";
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   INICIALIZAÇÃO
 ===================================================== */
 
 criarEstrelas();
 
-criarParticulas(30);
+criarParticulas(
+    30
+);
+
+
+/* =====================================================
+   PRÉ-CARREGAR OS CRIES
+===================================================== */
+
+[
+
+    133,
+    134,
+    135,
+    136,
+    196,
+    197,
+    470,
+    471,
+    700
+
+].forEach(
+    carregarSom
+);
 
 </script>
 
