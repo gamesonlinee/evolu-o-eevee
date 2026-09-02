@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>✨ Eevee - Evolução Mágica ✨</title>
+<title>✨ Evolução Mágica da Eevee ✨</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -15,21 +16,28 @@ html, body {
     margin: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 body {
-    font-family: "Trebuchet MS", Arial, sans-serif;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
     color: white;
+
     background:
-        radial-gradient(circle at 50% 45%, #32105e 0%, #120622 42%, #020105 100%);
+        radial-gradient(
+            circle at center,
+            #40106d 0%,
+            #160625 45%,
+            #030107 100%
+        );
 }
+
 
 /* =========================================================
    FUNDO
 ========================================================= */
 
-#background {
+#stars {
     position: fixed;
     inset: 0;
     overflow: hidden;
@@ -38,17 +46,26 @@ body {
 
 .star {
     position: absolute;
+
     width: 3px;
     height: 3px;
-    background: white;
+
     border-radius: 50%;
-    box-shadow: 0 0 10px white;
-    animation: twinkle 2s infinite alternate;
+
+    background: white;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 15px #c56cff;
+
+    animation:
+        starBlink 1.5s infinite alternate;
 }
 
-@keyframes twinkle {
+@keyframes starBlink {
+
     from {
-        opacity: .15;
+        opacity: .1;
         transform: scale(.5);
     }
 
@@ -56,15 +73,18 @@ body {
         opacity: 1;
         transform: scale(1.5);
     }
+
 }
 
+
 /* =========================================================
-   APP
+   TELA
 ========================================================= */
 
 #app {
+
     position: relative;
-    z-index: 10;
+    z-index: 5;
 
     width: 100%;
     height: 100%;
@@ -72,70 +92,89 @@ body {
     display: flex;
     flex-direction: column;
 
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     text-align: center;
 }
 
 h1 {
+
     margin: 0;
 
-    font-size: clamp(2.2rem, 6vw, 5rem);
+    font-size: clamp(
+        2.2rem,
+        7vw,
+        5rem
+    );
 
     background:
         linear-gradient(
             90deg,
-            #ffffff,
-            #ffd45e,
-            #ff79df,
+            #fff,
+            #ffe16b,
+            #ff75dd,
             #72eaff,
-            #ffffff
+            #fff
         );
 
     background-size: 400%;
 
     -webkit-background-clip: text;
+
     color: transparent;
 
-    animation: rainbow 5s linear infinite;
+    animation:
+        rainbow 5s linear infinite;
 
     filter:
-        drop-shadow(0 0 15px #ffffff)
-        drop-shadow(0 0 40px #c94cff);
+        drop-shadow(0 0 15px white)
+        drop-shadow(0 0 35px #c850ff);
 }
 
 @keyframes rainbow {
+
     to {
         background-position: 400%;
     }
+
 }
 
 .subtitle {
-    margin: 8px 0 20px;
-    color: #dfccff;
+
+    color: #e5d2ff;
+
+    margin:
+        5px
+        0
+        10px;
 }
 
+
 /* =========================================================
-   ÁREA DA EVOLUÇÃO
+   ÁREA CENTRAL
 ========================================================= */
 
 #stage {
-    width: min(90vw, 500px);
-    height: min(65vh, 500px);
 
     position: relative;
 
+    width: 430px;
+    height: 430px;
+
     display: flex;
-    align-items: center;
+
     justify-content: center;
+    align-items: center;
 }
+
 
 /* =========================================================
    CÍRCULO MÁGICO
 ========================================================= */
 
-.magic-circle {
+.magic {
+
     position: absolute;
 
     width: 330px;
@@ -144,20 +183,31 @@ h1 {
     border-radius: 50%;
 
     border:
-        2px solid rgba(255,255,255,.7);
+        2px solid rgba(
+            255,
+            255,
+            255,
+            .8
+        );
 
     box-shadow:
-        0 0 10px white,
-        0 0 30px #ff69ff,
-        0 0 70px #923cff,
-        inset 0 0 50px #7225d8;
+
+        0 0 15px white,
+
+        0 0 35px #d84dff,
+
+        0 0 80px #792cff,
+
+        inset
+        0 0 50px #8c35ff;
 
     animation:
-        circleRotate 8s linear infinite,
-        circlePulse 2s ease-in-out infinite;
+        magicRotate 7s linear infinite,
+        magicPulse 2s ease-in-out infinite;
 }
 
-.magic-circle::before {
+.magic::before {
+
     content: "";
 
     position: absolute;
@@ -167,20 +217,22 @@ h1 {
     border-radius: 50%;
 
     border:
-        2px dashed #ffb6ff;
+        2px dashed #ffb7ff;
 
     box-shadow:
-        0 0 20px #ff7bff;
+        0 0 15px #ff8cff;
 
-    animation: circleRotateReverse 5s linear infinite;
+    animation:
+        magicReverse 4s linear infinite;
 }
 
-.magic-circle::after {
-    content: "✦  ✧  ✦  ✧  ✦  ✧";
+.magic::after {
+
+    content: "✦  ✧  ✦  ✧";
 
     position: absolute;
 
-    inset: 75px;
+    inset: 80px;
 
     border-radius: 50%;
 
@@ -188,30 +240,13 @@ h1 {
         2px solid #72eaff;
 
     display: flex;
-    align-items: center;
+
     justify-content: center;
+    align-items: center;
 
-    color: #fff;
+    color: white;
 
-    font-size: 1.3rem;
-
-    text-shadow:
-        0 0 10px white,
-        0 0 20px #63eaff;
+    font-size: 25px;
 
     box-shadow:
-        0 0 20px #63eaff,
-        inset 0 0 25px #63eaff;
-
-    animation: circleRotate 4s linear infinite;
-}
-
-@keyframes circleRotate {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes circleRotateReverse {
-    to {
-        transform: rotate(-360deg
+        0 0 20px #5beaff;
